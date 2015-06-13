@@ -8,18 +8,18 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class Dashboard extends ActionBarActivity {
+public class SearchListing extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_search_listing);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        getMenuInflater().inflate(R.menu.menu_search_listing, menu);
         return true;
     }
 
@@ -43,11 +43,4 @@ public class Dashboard extends ActionBarActivity {
         Intent intent = new Intent(this, HousingListActivity.class);
         startActivity(intent);
     }
-
-    public void searchListing(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, SearchListing.class);
-        startActivity(intent);
-    }
-
 }

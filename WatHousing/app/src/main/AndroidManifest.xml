@@ -45,6 +45,10 @@
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".SearchListing"
+            android:label="@string/title_activity_search_listing" >
+        </activity>
     </application>
 
 </manifest>

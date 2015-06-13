@@ -7,8 +7,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="review_header">Write a review</string>
+    <string name="search_header">Enter a postal code or address</string>
     <string name="button_send">SEND</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="dashboard_header">Welcome to watHousing</string>
     <string name="view_listing">View Listings</string>
+    <string name="search_listing">Search Listings</string>
+    <string name="title_activity_search_listing">SearchListing</string>
+    <string name="search">Search</string>
 </resources>

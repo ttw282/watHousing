@@ -44,4 +44,10 @@ public class Dashboard extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void logout(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

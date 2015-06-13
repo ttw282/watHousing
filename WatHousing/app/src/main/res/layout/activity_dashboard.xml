@@ -15,4 +15,10 @@
         android:text="@string/view_listing"
         android:onClick="viewListing" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/logout"
+        android:onClick="logout" />
 </LinearLayout>

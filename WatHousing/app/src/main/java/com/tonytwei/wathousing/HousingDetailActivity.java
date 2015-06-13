@@ -15,7 +15,7 @@ import android.view.MenuItem;
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link HousingDetailFragment}.
- */
+ */    
 public class HousingDetailActivity extends ActionBarActivity {
 
     @Override

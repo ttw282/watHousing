@@ -10,11 +10,20 @@
         android:textStyle="bold"
         android:textIsSelectable="true" />
 
+    <Button android:id="@+id/dashboard_button" style="?android:textAppearanceSmall"
+        android:layout_width="280dp" android:layout_height="wrap_content"
+        android:text="Dashboard"
+        android:textStyle="bold"
+        android:onClick="Dashboard"
+        android:clickable="true" />
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_list"
     android:name="com.tonytwei.wathousing.HousingListFragment" android:layout_width="match_parent"
     android:layout_height="match_parent" android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp" tools:context="com.tonytwei.wathousing.HousingListActivity"
     tools:layout="@android:layout/list_content" />
+
+
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.tonytwei.wathousing;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 
 /**
@@ -77,5 +78,10 @@ public class HousingListActivity extends FragmentActivity
             detailIntent.putExtra(HousingDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
+    }
+
+    public void Dashboard(View view) {
+        Intent i = new Intent(this, Dashboard.class);
+        startActivity(i);
     }
 }

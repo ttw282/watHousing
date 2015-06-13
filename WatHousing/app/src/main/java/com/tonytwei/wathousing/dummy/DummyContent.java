@@ -25,9 +25,9 @@ public class DummyContent {
 
     static {
         // Add 3 sample items.
-        addItem(new DummyItem("1", "102 Seagram Drive - Apartment"));
-        addItem(new DummyItem("2", "1337 Avenue - Single House"));
-        addItem(new DummyItem("3", "Test data - Duplex"));
+        addItem(new DummyItem("1", "102 Seagram Drive - Apartment - $500/mo", "fully furnished, hydro not included"));
+        addItem(new DummyItem("2", "1337 Avenue - Single House - $600/mo", "not furnished, wifi included"));
+        addItem(new DummyItem("3", "Test data - Duplex - $1000/mo", "must take out own garbage"));
     }
 
     private static void addItem(DummyItem item) {
@@ -41,10 +41,12 @@ public class DummyContent {
     public static class DummyItem {
         public String id;
         public String content;
+        public String details;
 
-        public DummyItem(String id, String content) {
+        public DummyItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
+            this.details = details;
         }
 
         @Override

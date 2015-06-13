@@ -14,9 +14,23 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name"
             android:exported="true"
+            android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name=".HousingListActivity"
+            android:exported="true"
+            android:label="@string/title_housing_list" >
+        </activity>
+        <activity
+            android:name=".HousingDetailActivity"
+            android:label="@string/title_housing_detail"
+            android:exported="true"
+            android:parentActivityName=".HousingListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tonytwei.wathousing.HousingListActivity" />
         </activity>
     </application>
 

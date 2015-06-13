@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WatHousing</string>
+    <string name="title_housing_list">Housings</string>
+    <string name="title_housing_detail">Housing Detail</string>
 </resources>

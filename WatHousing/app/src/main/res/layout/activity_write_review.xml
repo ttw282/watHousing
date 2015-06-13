@@ -6,15 +6,11 @@
     android:orientation="horizontal"
     tools:context="com.tonytwei.wathousing.WriteReview">
 
-    <TextView
-        android:text="@string/review_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/review_content"
-        android:layout_width="fill_parent"
+    <EditText android:id="@+id/review_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:hint="@string/review_header" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

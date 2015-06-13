@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 
 /**
@@ -48,6 +49,9 @@ public class HousingDetailActivity extends ActionBarActivity {
                     .add(R.id.housing_detail_container, fragment)
                     .commit();
         }
+
+        ImageView img = (ImageView)findViewById(R.id.imageView);
+        img.setImageResource(R.drawable.apartment);
     }
 
     @Override

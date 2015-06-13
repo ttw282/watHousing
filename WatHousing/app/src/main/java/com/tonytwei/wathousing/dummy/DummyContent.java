@@ -25,9 +25,9 @@ public class DummyContent {
 
     static {
         // Add 3 sample items.
-        addItem(new DummyItem("1", "102 Seagram Drive"));
-        addItem(new DummyItem("2", "1337 Avenue"));
-        addItem(new DummyItem("3", "Test data"));
+        addItem(new DummyItem("1", "102 Seagram Drive - Apartment"));
+        addItem(new DummyItem("2", "1337 Avenue - Single House"));
+        addItem(new DummyItem("3", "Test data - Duplex"));
     }
 
     private static void addItem(DummyItem item) {

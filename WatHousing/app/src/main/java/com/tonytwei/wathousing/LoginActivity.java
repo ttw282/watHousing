@@ -141,7 +141,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            Intent i = new Intent(this, HousingListActivity.class);
+            Intent i = new Intent(this, Dashboard.class);
             startActivity(i);
         }
     }

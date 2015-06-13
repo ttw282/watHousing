@@ -34,12 +34,16 @@
         </activity>
         <activity
             android:name=".WriteReview"
-            android:label="@string/title_activity_write_review"
             android:exported="true"
+            android:label="@string/title_activity_write_review"
             android:parentActivityName=".HousingDetailActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tonytwei.wathousing.HousingDetailActivity" />
+        </activity>
+        <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard" >
         </activity>
     </application>
 

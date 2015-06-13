@@ -15,4 +15,5 @@
     <string name="search_listing">Search Listings</string>
     <string name="title_activity_search_listing">SearchListing</string>
     <string name="search">Search</string>
+    <string name="logout">Logout</string>
 </resources>

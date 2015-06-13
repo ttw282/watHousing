@@ -1,5 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:id="@+id/text1"
+    android:text="Housing List"
+    android:textStyle="bold"
+    android:textIsSelectable="true" />
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
     android:name="com.tonytwei.wathousing.ListViewFragment"
     tools:layout="@layout/fragment_list_view" android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="300dp" />
+
+    </LinearLayout>

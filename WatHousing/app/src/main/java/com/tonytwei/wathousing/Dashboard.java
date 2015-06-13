@@ -47,6 +47,10 @@ public class Dashboard extends ActionBarActivity {
     public void searchListing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, SearchListing.class);
+    }
+    public void logout(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

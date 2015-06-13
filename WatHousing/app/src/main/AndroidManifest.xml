@@ -25,12 +25,20 @@
         </activity>
         <activity
             android:name=".HousingDetailActivity"
-            android:label="@string/title_housing_detail"
             android:exported="true"
+            android:label="@string/title_housing_detail"
             android:parentActivityName=".HousingListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tonytwei.wathousing.HousingListActivity" />
+        </activity>
+        <activity
+            android:name=".WriteReview"
+            android:label="@string/title_activity_write_review"
+            android:parentActivityName=".HousingDetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tonytwei.wathousing.HousingDetailActivity" />
         </activity>
     </application>
 

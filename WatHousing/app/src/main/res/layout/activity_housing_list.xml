@@ -4,11 +4,12 @@
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:id="@+id/text1"
         android:text="Housing List"
         android:textStyle="bold"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:textSize="32dp" />
 
     <Button android:id="@+id/dashboard_button" style="?android:textAppearanceSmall"
         android:layout_width="280dp" android:layout_height="wrap_content"

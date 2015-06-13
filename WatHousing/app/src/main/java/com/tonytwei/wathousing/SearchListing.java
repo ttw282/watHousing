@@ -38,7 +38,7 @@ public class SearchListing extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void viewListing(View view) {
+    public void searchHousing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, HousingListActivity.class);
         startActivity(intent);

@@ -35,6 +35,7 @@
         <activity
             android:name=".WriteReview"
             android:label="@string/title_activity_write_review"
+            android:exported="true"
             android:parentActivityName=".HousingDetailActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

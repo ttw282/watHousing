@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
 
 
 /**
@@ -64,5 +65,10 @@ public class HousingDetailActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void WriteReview(View view) {
+        Intent i = new Intent(this, WriteReview.class);
+        startActivity(i);
     }
 }

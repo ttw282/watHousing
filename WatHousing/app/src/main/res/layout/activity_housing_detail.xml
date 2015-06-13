@@ -13,6 +13,7 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:layout_marginTop="16dp" android:text="Write Review"
         android:textStyle="bold"
+        android:onClick="WriteReview"
         android:clickable="true" />
 
 </LinearLayout>

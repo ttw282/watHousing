@@ -28,6 +28,15 @@ public class DummyContent {
         addItem(new DummyItem("1", "102 Seagram Drive - Apartment - $500/mo", "fully furnished, hydro not included"));
         addItem(new DummyItem("2", "1337 Avenue - Single House - $600/mo", "not furnished, wifi included"));
         addItem(new DummyItem("3", "Test data - Duplex - $1000/mo", "must take out own garbage"));
+        addItem(new DummyItem("4", "102 Seagram Drive - Apartment - $500/mo", "fully furnished, hydro not included"));
+        addItem(new DummyItem("5", "1337 Avenue - Single House - $600/mo", "not furnished, wifi included"));
+        addItem(new DummyItem("6", "Test data - Duplex - $1000/mo", "must take out own garbage"));
+        addItem(new DummyItem("7", "102 Seagram Drive - Apartment - $500/mo", "fully furnished, hydro not included"));
+        addItem(new DummyItem("8", "1337 Avenue - Single House - $600/mo", "not furnished, wifi included"));
+        addItem(new DummyItem("9", "Test data - Duplex - $1000/mo", "must take out own garbage"));
+        addItem(new DummyItem("10", "102 Seagram Drive - Apartment - $500/mo", "fully furnished, hydro not included"));
+        addItem(new DummyItem("11", "1337 Avenue - Single House - $600/mo", "not furnished, wifi included"));
+        addItem(new DummyItem("12", "Test data - Duplex - $1000/mo", "must take out own garbage"));
     }
 
     private static void addItem(DummyItem item) {

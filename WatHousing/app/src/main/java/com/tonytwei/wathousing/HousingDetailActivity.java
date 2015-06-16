@@ -67,7 +67,7 @@ public class HousingDetailActivity extends ActionBarActivity {
         ImageView img = (ImageView)findViewById(R.id.imageView);
         img.setImageResource(R.drawable.apartment);
 
-        new HttpAsyncTask().execute("http://mdguo.com/api/api.php");
+        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
     }
 
     @Override

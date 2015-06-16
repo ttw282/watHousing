@@ -24,6 +24,14 @@
         android:onClick="WriteReview"
         android:clickable="true" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/reviews"
+        android:layout_gravity="bottom"
+        android:text=""
+        android:textStyle="bold"
+        android:textIsSelectable="true"
+        android:textSize="32dp" />
 
 </LinearLayout>

@@ -12,8 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -59,7 +61,7 @@ public class WriteReview extends ActionBarActivity {
     }
 
 
-    public static String GET(String url){
+   /* public static String GET(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -110,12 +112,41 @@ public class WriteReview extends ActionBarActivity {
         inputStream.close();
         return result;
 
+    }*/
+
+
+
+    public void postData(String valueIWantToSend) {
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost(valueIWantToSend);
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+            // write response to log
+            Log.d("Http Post Response:", response.toString());
+        } catch (ClientProtocolException e) {
+            // Log exception
+            e.printStackTrace();
+        } catch (IOException e) {
+            // Log exception
+            e.printStackTrace();
+        }
     }
-
-
-
     public void WriteReview(View view) {
-        new HttpAsyncTask().execute("http://mdguo.com/api/api.php");
+        new MyAsyncTask().execute("http://mdguo.com/api/postListing.php?addr=test&contact=testcontact&name=testname&pcode=testpcode&rent=1000");
+
     }
 
+    private class MyAsyncTask extends AsyncTask<String, Integer, Double> {
+        @Override
+        protected Double doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            postData(params[0]);
+            return null;
+        }
+
+        protected void onPostExecute(Double result) {
+            Toast.makeText(getApplicationContext(), "command sent", Toast.LENGTH_LONG).show();
+        }
+    }
 }

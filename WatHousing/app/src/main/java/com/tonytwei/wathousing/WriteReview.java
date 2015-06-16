@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,11 @@ public class WriteReview extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review);
+
+        Spinner dropdown = (Spinner)findViewById(R.id.rating);
+        String[] items = new String[]{"1", "2", "3", "4", "5"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        dropdown.setAdapter(adapter);
     }
 
     @Override
@@ -133,8 +141,12 @@ public class WriteReview extends ActionBarActivity {
         }
     }
     public void WriteReview(View view) {
-        new MyAsyncTask().execute("http://mdguo.com/api/postListing.php?addr=test&contact=testcontact&name=testname&pcode=testpcode&rent=1000");
-
+        EditText mEdit = (EditText)findViewById(R.id.review_content);
+        Spinner spin = (Spinner)findViewById(R.id.rating);
+        String listid = "";
+        String rating = spin.getSelectedItem().toString();
+        String comments = mEdit.getText().toString();
+        new MyAsyncTask().execute("http://mdguo.com/api/postReview.php?list_id=" + listid + "&rating=" + rating + "&comments="+comments );
     }
 
     private class MyAsyncTask extends AsyncTask<String, Integer, Double> {

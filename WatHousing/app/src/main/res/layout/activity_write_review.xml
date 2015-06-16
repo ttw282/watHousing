@@ -11,20 +11,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/review_header" />
+
+    <Spinner
+        android:id="@+id/rating"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="WriteReview"
         android:text="@string/button_send" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/test"
-        android:layout_gravity="bottom"
-        android:text="Housing List"
-        android:textStyle="bold"
-        android:textIsSelectable="true"
-        android:textSize="32dp" />
 
 </LinearLayout>

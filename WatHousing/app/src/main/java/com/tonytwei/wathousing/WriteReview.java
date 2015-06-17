@@ -32,6 +32,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 
 public class WriteReview extends ActionBarActivity {
 
@@ -40,10 +42,7 @@ public class WriteReview extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.rating);
-        String[] items = new String[]{"1", "2", "3", "4", "5"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
-        dropdown.setAdapter(adapter);
+
     }
 
     @Override
@@ -142,9 +141,9 @@ public class WriteReview extends ActionBarActivity {
     }
     public void WriteReview(View view) {
         EditText mEdit = (EditText)findViewById(R.id.review_content);
-        Spinner spin = (Spinner)findViewById(R.id.rating);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         String listid = "";
-        String rating = spin.getSelectedItem().toString();
+        String rating =  String.valueOf(ratingBar.getRating());
         String comments = mEdit.getText().toString();
         new MyAsyncTask().execute("http://mdguo.com/api/postReview.php?list_id=" + listid + "&rating=" + rating + "&comments="+comments );
     }
@@ -158,7 +157,7 @@ public class WriteReview extends ActionBarActivity {
         }
 
         protected void onPostExecute(Double result) {
-            Toast.makeText(getApplicationContext(), "command sent", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Review Submitted", Toast.LENGTH_LONG).show();
         }
     }
 }

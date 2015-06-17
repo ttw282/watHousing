@@ -1,10 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/text1"
         android:text="Housing List"
         android:textStyle="bold"
@@ -12,19 +14,20 @@
         android:textSize="32dp" />
 
     <Button android:id="@+id/dashboard_button" style="?android:textAppearanceSmall"
-        android:layout_width="280dp" android:layout_height="wrap_content"
-        android:text="Dashboard"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Return to Dashboard"
         android:textStyle="bold"
         android:onClick="Dashboard"
         android:clickable="true" />
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_list"
-    android:name="com.tonytwei.wathousing.HousingListFragment" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp" tools:context="com.tonytwei.wathousing.HousingListActivity"
-    tools:layout="@android:layout/list_content" />
-
-
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_list"
+        android:name="com.tonytwei.wathousing.HousingListFragment" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        tools:context="com.tonytwei.wathousing.HousingListActivity"
+        tools:layout="@android:layout/list_content"
+        android:layout_weight="0.96" />
 
     </LinearLayout>

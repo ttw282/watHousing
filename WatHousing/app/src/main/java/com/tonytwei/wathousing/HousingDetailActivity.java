@@ -129,7 +129,7 @@ public class HousingDetailActivity extends ActionBarActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Updated!", Toast.LENGTH_LONG).show();
             ((TextView)findViewById(R.id.reviews)).setText(result);
         }
     }

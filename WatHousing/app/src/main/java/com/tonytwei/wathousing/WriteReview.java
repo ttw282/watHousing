@@ -146,6 +146,7 @@ public class WriteReview extends ActionBarActivity {
         String rating =  String.valueOf(ratingBar.getRating());
         String comments = mEdit.getText().toString();
         new MyAsyncTask().execute("http://mdguo.com/api/postReview.php?list_id=" + listid + "&rating=" + rating + "&comments="+comments );
+        finish();
     }
 
     private class MyAsyncTask extends AsyncTask<String, Integer, Double> {

@@ -144,4 +144,13 @@ public class HousingDetailActivity extends ActionBarActivity {
         inputStream.close();
         return result;
     }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        //Refresh your stuff here
+        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
+
+    }
 }

@@ -9,28 +9,21 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="30sp"
+        android:layout_height="wrap_content"
         android:onClick="viewListing"
         android:gravity="center"
-        android:text="View All Listings"
-        android:textStyle="bold" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="30sp"
-        android:text="Search Listings"
-        android:onClick="searchListing"
-        android:gravity="center"
-        android:textStyle="bold" />
+        android:text="View All Listings" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:text="Search Listings"
+        android:onClick="searchListing"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:text="@string/logout"
         android:onClick="logout" />

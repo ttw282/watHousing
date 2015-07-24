@@ -40,9 +40,8 @@ public class SignUpActivity extends ActionBarActivity {
 
         Spinner dropdown = (Spinner)findViewById(R.id.role);
         String[] items = new String[]{"Student", "Landlord"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, items);
         dropdown.setAdapter(adapter);
-
     }
 
     @Override

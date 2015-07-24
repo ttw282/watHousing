@@ -28,17 +28,25 @@
     <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Are you a student or landlord?" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Are you a student or landlord?"
+            android:padding="5dp"
+            android:textColor="#ffffff"/>
 
-    <Spinner
-        android:id="@+id/role"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dropdown" />
+        <Spinner
+            android:id="@+id/role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:popupBackground="#1565C0"
+            />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="20dp"/>
 
         <AutoCompleteTextView android:id="@+id/email"
             android:layout_width="match_parent"

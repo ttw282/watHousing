@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -34,6 +36,12 @@ public class SignUpActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        Spinner dropdown = (Spinner)findViewById(R.id.role);
+        String[] items = new String[]{"Student", "Landlord"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        dropdown.setAdapter(adapter);
+
     }
 
     @Override
@@ -77,14 +85,11 @@ public class SignUpActivity extends ActionBarActivity {
     public void signUp(View view) {
         EditText emailtext = (EditText)findViewById(R.id.email);
         EditText passwordtext = (EditText)findViewById(R.id.password);
-        EditText roletext = (EditText)findViewById(R.id.role);
+        Spinner roletext = (Spinner)findViewById(R.id.role);
         String email = emailtext.getText().toString();
         String password = passwordtext.getText().toString();
-        String role = roletext.getText().toString();
-        String roleint = "1";
-        if(role == "student"){
-            roleint = "0";
-        }
+        String role = roletext.getSelectedItem().toString();
+        String roleint = role == "Student" ? "0" : "1";
         new MyAsyncTask().execute("http://mdguo.com/api/test.php?username=" + email + "&password=" + password + "&role="+roleint );
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);

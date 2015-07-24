@@ -32,12 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Student or Landlord? Enter exactly one of the two." />
+        android:text="Are you a student or landlord?" />
 
-    <EditText android:id="@+id/role"
+    <Spinner
+        android:id="@+id/role"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="'student' or 'landlord'" />
+        android:layout_height="50dp"
+        android:spinnerMode="dropdown" />
 
     <Button
         android:layout_width="wrap_content"

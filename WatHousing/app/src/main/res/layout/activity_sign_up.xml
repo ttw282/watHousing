@@ -11,11 +11,6 @@
     android:background="#0D47A1"
     tools:context=".SignUpActivity">
 
-    <!-- Login progress -->
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
-
     <Space
         android:layout_width="1dp"
         android:layout_height="30dp"/>
@@ -48,7 +43,9 @@
 
         <EditText android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="@string/prompt_password"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
             android:maxLines="1" android:singleLine="true"
             android:padding="5dp"
             android:background="@drawable/edittext_default_bg"

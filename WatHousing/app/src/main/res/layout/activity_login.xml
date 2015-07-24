@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Not an user? Sign Up!"
+                android:text="Not a user? Sign Up!"
                 android:onClick="signUp"
                 android:textColor="#ffffff"
                 android:background="@null" />

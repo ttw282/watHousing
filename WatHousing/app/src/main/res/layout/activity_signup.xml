@@ -2,20 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText android:id="@+id/username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/username" />
-    <TextView
-        android:layout_width="wrap_content"
+        android:hint="@string/username" />
+
+    <EditText android:id="@+id/password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/password" />
-    <TextView
-        android:layout_width="wrap_content"
+        android:hint="@string/password" />
+
+    <EditText android:id="@+id/email"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/email" />
+        android:hint="@string/email" />
 
 </LinearLayout>

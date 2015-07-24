@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#2196F3"
+    android:background="#0D47A1"
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
@@ -18,11 +18,11 @@
 
     <Space
         android:layout_width="1dp"
-        android:layout_height="60dp"/>
+        android:layout_height="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="140dp"
+        android:layout_height="110dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="watHousing"
         android:textColor="#ffffff"
@@ -71,23 +71,25 @@
                 android:padding="10dp"
                 android:layout_margin="4dp"
                 android:text="Sign In"
+                android:textColor="#000000"
                 style="@style/DefaultButtonText"
                 android:background="@drawable/button_default_bg"
                 />
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="20dp"/>
 
             <Button
                 android:id="@+id/email_sign_up_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="4dp"
+                android:layout_gravity="center"
                 android:text="Sign Up"
                 android:onClick="signUp"
-                style="@style/DefaultButtonText"
+                android:style="@style/DefaultButtonText"
                 android:background="@drawable/button_default_bg"
+                android:textColor="#ffffff"
                 />
 
         </LinearLayout>

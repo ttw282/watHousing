@@ -28,6 +28,18 @@
     <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Are you a student or landlord?" />
+
+    <Spinner
+        android:id="@+id/role"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:spinnerMode="dropdown" />
+
         <AutoCompleteTextView android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:hint="@string/prompt_email"
@@ -50,18 +62,6 @@
             android:padding="5dp"
             android:background="@drawable/edittext_default_bg"
             android:drawableLeft="@drawable/ic_lock_black_18dp"/>
-
-        <Space
-            android:layout_width="1dp"
-            android:layout_height="20dp"/>
-
-        <EditText android:id="@+id/role"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Student or Landlord"
-            android:maxLines="1" android:singleLine="true"
-            android:padding="5dp"
-            android:background="@drawable/edittext_default_bg" />
 
         <Space
             android:layout_width="1dp"

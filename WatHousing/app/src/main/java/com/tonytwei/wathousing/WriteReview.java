@@ -42,7 +42,7 @@ public class WriteReview extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review);
 
-
+        getSupportActionBar().hide();
     }
 
     @Override

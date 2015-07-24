@@ -6,7 +6,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="review_header">Write a review</string>
+    <string name="review_header">Enter your review</string>
     <string name="search_header">Enter a postal code or address</string>
     <string name="button_send">Submit Review</string>
     <string name="title_activity_dashboard">Dashboard</string>

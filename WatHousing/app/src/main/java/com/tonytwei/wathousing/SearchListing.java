@@ -14,8 +14,10 @@ public class SearchListing extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_listing);
+
         getSupportActionBar().hide();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,6 +40,7 @@ public class SearchListing extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     public void searchHousing(View view) {
         // Do something in response to button

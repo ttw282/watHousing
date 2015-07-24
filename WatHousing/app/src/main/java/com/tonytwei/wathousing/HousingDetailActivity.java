@@ -41,6 +41,7 @@ public class HousingDetailActivity extends ActionBarActivity {
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity

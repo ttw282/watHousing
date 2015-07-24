@@ -18,6 +18,9 @@
     <string name="logout">Logout</string>
     <string name="rating">Rating:</string>
     <string name="comments">Comments:</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>

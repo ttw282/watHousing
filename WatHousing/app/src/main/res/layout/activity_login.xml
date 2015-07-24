@@ -91,11 +91,6 @@
                 android:background="@drawable/button_default_bg"
                 android:textColor="#ffffff"
                 />
-            <TextView
-                android:id="@+id/hidden"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                />
 
         </LinearLayout>
     </ScrollView>

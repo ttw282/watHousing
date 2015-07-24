@@ -15,6 +15,8 @@ import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
@@ -154,9 +156,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             mAuthTask.execute((Void) null);
 
 
-            new HttpAsyncTask().execute("http://mdguo.com/api/authenticate.php?username="+email + "&password=" + password);
+           new HttpAsyncTask().execute("http://mdguo.com/api/authenticate.php?username=" + email + "&password=" + password);
 
-            TextView txt = ((TextView)findViewById(R.id.hidden));
+
+            /*TextView txt = ((TextView)findViewById(R.id.hidden));
             String result = txt.getText().toString();
             if(result == "1") {
                 Intent intent = new Intent(this, Dashboard.class);
@@ -165,7 +168,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             else{
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
-            }
+            }*/
         }
     }
 
@@ -218,12 +221,32 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             if(result == "1") {
                 Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_LONG).show();
             }
-            else {
+            else if(result == "0") {
                 Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
             }
-            ((TextView)findViewById(R.id.hidden)).setText(result);
+
+            myHandler.sendEmptyMessage(Integer.parseInt(result));
         }
     }
+
+    Handler myHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                    break;
+                case 1:
+                    Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                    startActivity(intent1);
+                default:
+                    break;
+            }
+        }
+    };
+
 
     public void signUp(View view) {
         // Do something in response to button

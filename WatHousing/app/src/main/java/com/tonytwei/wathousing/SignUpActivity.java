@@ -1,5 +1,6 @@
 package com.tonytwei.wathousing;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,12 +13,19 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SignUpActivity extends ActionBarActivity {
@@ -73,8 +81,13 @@ public class SignUpActivity extends ActionBarActivity {
         String email = emailtext.getText().toString();
         String password = passwordtext.getText().toString();
         String role = roletext.getText().toString();
-        new MyAsyncTask().execute("http://mdguo.com/api/createUser.php?username=" + email + "&password=" + password + "&role="+role );
-        finish();
+        String roleint = "1";
+        if(role == "student"){
+            roleint = "0";
+        }
+        new MyAsyncTask().execute("http://mdguo.com/api/test.php?username=" + email + "&password=" + password + "&role="+roleint );
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private class MyAsyncTask extends AsyncTask<String, Integer, Double> {

@@ -71,26 +71,20 @@
                 android:padding="10dp"
                 android:layout_margin="4dp"
                 android:text="Sign In"
-                android:textColor="#000000"
+                android:textColor="#0D47A1"
                 style="@style/DefaultButtonText"
-                android:background="@drawable/button_default_bg"
-                />
-
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="20dp"/>
+                android:background="@drawable/button_default_bg" />
 
             <Button
                 android:id="@+id/email_sign_up_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sign Up"
+                android:text="Not an user? Sign Up!"
                 android:onClick="signUp"
-                style="@style/DefaultButtonText"
-                android:background="@drawable/button_default_bg"
                 android:textColor="#ffffff"
-                />
+                android:background="@null" />
+
             <TextView
                 android:id="@+id/hidden"
                 android:layout_width="0dp"

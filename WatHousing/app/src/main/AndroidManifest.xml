@@ -51,6 +51,10 @@
             android:name=".SearchListing"
             android:label="@string/title_activity_search_listing" >
         </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/title_activity_sign_up" >
+        </activity>
     </application>
 
 </manifest>

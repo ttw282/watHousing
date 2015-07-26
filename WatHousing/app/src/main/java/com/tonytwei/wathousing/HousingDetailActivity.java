@@ -18,6 +18,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,7 +72,7 @@ public class HousingDetailActivity extends ActionBarActivity {
         }
 
 
-        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
+        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php");
     }
 
     @Override
@@ -92,7 +95,7 @@ public class HousingDetailActivity extends ActionBarActivity {
     public void WriteReview(View view) {
         Intent i = new Intent(this, WriteReview.class);
         TextView txt = (TextView)findViewById(R.id.housing_detail);
-        String listingid = txt.getText().toString().substring(0,1);
+        String listingid = txt.getText().toString().substring(0, 1);
         getIntent().removeExtra("listingid");
         i.putExtra("listingid", listingid);
         startActivity(i);
@@ -136,7 +139,35 @@ public class HousingDetailActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), "Updated!", Toast.LENGTH_LONG).show();
-            ((TextView)findViewById(R.id.reviews)).setText(result);
+            //((TextView)findViewById(R.id.reviews)).setText(result);
+
+            try {
+                String reviews = "";
+                JSONArray mJsonArray = new JSONArray(result);
+
+                TextView frag = (TextView)findViewById(R.id.housing_detail);
+                String id = frag.getText().toString().substring(0,1);
+                float total = 0;
+                float count = 0;
+                float avg = 0;
+
+                for(int i = 0; i < mJsonArray.length(); i++) {
+                    JSONObject obj = mJsonArray.getJSONObject(i);
+                    if(obj.getInt("listingId") == Integer.parseInt(id)) {
+                        reviews += "Rating: " + obj.getInt("rating") + ", " + "Comments: " + obj.getString("comments") + "\n";
+                        count++;
+                        total += obj.getInt("rating");
+                    }
+                }
+                reviews += "\n";
+                avg = total/count;
+                reviews += "Average rating: " + avg;
+
+                TextView txt = (TextView)findViewById(R.id.reviews);
+                txt.setText(reviews);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -157,7 +188,7 @@ public class HousingDetailActivity extends ActionBarActivity {
         super.onResume();
         //Refresh your stuff here
 
-        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
+        new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php");
 
     }
 }

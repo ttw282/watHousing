@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tonytwei.wathousing.dummy.DummyContent;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -34,6 +36,7 @@ import java.io.InputStreamReader;
  */    
 public class HousingDetailActivity extends ActionBarActivity {
 
+    private DummyContent.DummyItem mItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,7 @@ public class HousingDetailActivity extends ActionBarActivity {
                     .commit();
         }
 
+
         new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
     }
 
@@ -87,6 +91,10 @@ public class HousingDetailActivity extends ActionBarActivity {
 
     public void WriteReview(View view) {
         Intent i = new Intent(this, WriteReview.class);
+        TextView txt = (TextView)findViewById(R.id.housing_detail);
+        String listingid = txt.getText().toString().substring(0,1);
+        getIntent().removeExtra("listingid");
+        i.putExtra("listingid", listingid);
         startActivity(i);
     }
 
@@ -148,6 +156,7 @@ public class HousingDetailActivity extends ActionBarActivity {
     {  // After a pause OR at startup
         super.onResume();
         //Refresh your stuff here
+
         new HttpAsyncTask().execute("http://mdguo.com/api/getReview.php?listId=");
 
     }

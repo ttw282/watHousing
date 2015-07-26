@@ -86,7 +86,11 @@ public class WriteReview extends ActionBarActivity {
     public void WriteReview(View view) {
         EditText mEdit = (EditText)findViewById(R.id.review_content);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        String listid = "";
+        String listid = "0";
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            listid = extras.getString("listingid");
+        }
         String rating =  String.valueOf(ratingBar.getRating());
         String comments = mEdit.getText().toString().replace(" ", "%20");
         new MyAsyncTask().execute("http://mdguo.com/api/postReview.php?list_id=" + listid + "&rating=" + rating + "&comments="+comments );

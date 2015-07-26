@@ -95,7 +95,7 @@ public class DummyContent {
                 JSONArray mJsonArray = new JSONArray(result);
                 for(int i = 0; i < mJsonArray.length(); i++){
                     JSONObject obj = mJsonArray.getJSONObject(i);
-                    addItem(new DummyItem(Integer.toString(i+1), String.format("%s, %s - $%s", obj.getString("address"), obj.getString("postalCode"), obj.getString("rent")), String.format("%s - %s", obj.getString("name"), obj.getString("contact"))));
+                    addItem(new DummyItem(Integer.toString(i+1), String.format("%s: %s, %s - $%s", obj.getString("listingId"), obj.getString("address"), obj.getString("postalCode"), obj.getString("rent")), String.format("%s - %s", obj.getString("name"), obj.getString("contact"))));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -16,35 +16,21 @@ $listId = $_GET["listId"];
 if($listId != NULL) {
 	$stmt = $db->prepare("SELECT * FROM Review WHERE listingId = ?");
 	$stmt->bind_param('i', $listId);
-} else {
-	$stmt = $db->prepare("SELECT * FROM Review");
-}
+	$stmt->execute();
 
-$stmt->execute();
+	$stmt->store_result();
 
-$json = array();
-$temp = array();
+	$stmt->bind_result($reviewId, $listingId, $rating, $comments);
 
-$stmt->bind_result($a, $b, $c, $d);
-
-/*
-[
-	{
-		reviewId: $a,
-		listingId: $b,
-		rating: $c,
-		$comments: $d
+	$data = array();
+	while ($stmt->fetch()) {
+		$data[] = array("reviewId"=>$reviewId, "listingId"=>$listingId, "rating"=>$rating, "comments"=>$comments);
 	}
-]
 
-*/
-//$result = $stmt->get_result();
-while( $stmt->fetch() ) {
-	//echo $row;
-	// $temp = $row;
-	// echo $d;
-	// array_push($json, $temp);
-	printf("%d %d %d %s", $a, $b, $c, $d);
+	$stmt->free_result();
+	$stmt->close();
+
+echo json_encode($data);
 }
 
 

@@ -34,10 +34,6 @@ while ($stmt->fetch()) {
 $stmt->free_result();
 $stmt->close();
 
-// while ($row = $res->fetch_assoc()) {
-// 	$rArray[] = $row;
-// }
-
 echo json_encode($data);
 
 $db->close();

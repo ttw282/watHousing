@@ -6,15 +6,13 @@ if($db->connect_errno > 0){
     die('Unable to connect to database [' . $db->connect_error . ']');
 }
 
-// address
-$_addr = $_GET["addr"];
-// postalCode
-$_pcode = $_GET["pcode"];
 
-$stmt = $db->prepare("SELECT * FROM Listing");
-//AND address LIKE ? AND rent <= ?
-// $stmt->bind_param('ssi', $pcode, $addr, $rent);
-// $stmt->bind_param('s', $pcode);
+// postalCode
+$_pcode = substr($_GET["pcode"], 0, 3);
+$_pcode .= '%';
+
+$stmt = $db->prepare("SELECT * FROM Listing WHERE postalCode LIKE ?");
+$stmt->bind_param('s', $_pcode);
 
 if (!$stmt->execute()) {
     echo "CALL failed: (" . $db->errno . ") " . $db->error;

@@ -36,4 +36,5 @@
         <item name="android:shadowRadius">1</item>
     </style>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_add_listing">AddListingActivity</string>
 </resources>

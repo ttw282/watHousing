@@ -72,11 +72,11 @@ public class AddListingActivity extends ActionBarActivity {
         EditText name1 = (EditText)findViewById(R.id.name);
         EditText pcode1 = (EditText)findViewById(R.id.pcode);
         EditText rent1 = (EditText)findViewById(R.id.rent);
-        String address = address1.getText().toString();
-        String contact = contact1.getText().toString();
-        String name = name1.getText().toString();
-        String pcode = pcode1.getText().toString();
-        String rent = rent1.getText().toString();
+        String address = address1.getText().toString().replace(" ", "%20");
+        String contact = contact1.getText().toString().replace(" ", "%20");
+        String name = name1.getText().toString().replace(" ", "%20");
+        String pcode = pcode1.getText().toString().replace(" ", "%20");
+        String rent = rent1.getText().toString().replace(" ", "%20");
 
         new MyAsyncTask().execute("http://mdguo.com/api/postListing.php?addr=" + address + "&contact=" + contact + "&name="+name + "&pcode=" + pcode + "&rent="+rent );
         finish();

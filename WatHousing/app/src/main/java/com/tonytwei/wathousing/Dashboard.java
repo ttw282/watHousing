@@ -64,6 +64,9 @@ public class Dashboard extends ActionBarActivity {
     public void viewListing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, HousingListActivity.class);
+        getIntent().removeExtra("search");
+        getIntent().removeExtra("searchkey");
+        intent.putExtra("search", 0);
         startActivity(intent);
     }
 

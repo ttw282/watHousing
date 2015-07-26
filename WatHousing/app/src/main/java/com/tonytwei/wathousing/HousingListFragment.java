@@ -1,11 +1,15 @@
 package com.tonytwei.wathousing;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.tonytwei.wathousing.dummy.DummyContent;
@@ -72,14 +76,33 @@ public class HousingListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
+        int search = 0;
+        String searchkey = "";
+        Bundle extras = getActivity().getIntent().getExtras();
+        if(extras != null){
+            search = extras.getInt("search");
+            searchkey = extras.getString("searchkey");
+        }
 
-        DummyContent.updateContent();
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+        DummyContent.updateContent(search, searchkey);
+
+
+        Message msg = Message.obtain();
+        msg.obj = "";
+        msg.setTarget(myHandler);
+        msg.sendToTarget();
+
     }
+
+    Handler myHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            if(DummyContent.ITEMS != null) {
+                setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
+            }
+        }
+    };
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -151,4 +174,6 @@ public class HousingListFragment extends ListFragment {
 
         mActivatedPosition = position;
     }
+
+
 }

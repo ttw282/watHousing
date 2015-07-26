@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class SearchListing extends ActionBarActivity {
@@ -45,6 +46,15 @@ public class SearchListing extends ActionBarActivity {
     public void searchHousing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, HousingListActivity.class);
+
+
+        TextView txt = (TextView)findViewById(R.id.search_keyword);
+        String searchkey = txt.getText().toString();
+
+        getIntent().removeExtra("search");
+        getIntent().removeExtra("searchkey");
+        intent.putExtra("search", 1);
+        intent.putExtra("searchkey", searchkey);
         startActivity(intent);
     }
 }

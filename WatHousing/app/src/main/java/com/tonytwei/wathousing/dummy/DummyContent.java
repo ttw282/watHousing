@@ -1,10 +1,16 @@
 package com.tonytwei.wathousing.dummy;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tonytwei.wathousing.Dashboard;
+import com.tonytwei.wathousing.HousingListFragment;
 import com.tonytwei.wathousing.R;
 
 import org.apache.http.HttpResponse;
@@ -35,24 +41,29 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static List<DummyItem> ITEMS = new ArrayList<>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
-
-    static {
-    }
+    public static Map<String, DummyItem> ITEM_MAP = new HashMap<>();
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    public static void updateContent(){
+    public static void updateContent(int search, String searchkey){
         ITEMS.clear();
-        new HttpAsyncTask().execute("http://mdguo.com/api/getListing.php");
+        ITEM_MAP.clear();
+
+        if(search == 0) {
+            new HttpAsyncTask().execute("http://mdguo.com/api/getListing.php");
+        }
+        else if(search == 1){
+            new HttpAsyncTask().execute("http://mdguo.com/api/searchListing.php?pcode=" + searchkey);
+
+        }
     }
 
     public static String GET(String url){
@@ -95,11 +106,12 @@ public class DummyContent {
                 JSONArray mJsonArray = new JSONArray(result);
                 for(int i = 0; i < mJsonArray.length(); i++){
                     JSONObject obj = mJsonArray.getJSONObject(i);
-                    addItem(new DummyItem(Integer.toString(i+1), String.format("%s: %s, %s - $%s", obj.getString("listingId"), obj.getString("address"), obj.getString("postalCode"), obj.getString("rent")), String.format("%s - %s", obj.getString("name"), obj.getString("contact"))));
+                    addItem(new DummyItem(Integer.toString(i + 1), String.format("%s: %s, %s - $%s", obj.getString("listingId"), obj.getString("address"), obj.getString("postalCode"), obj.getString("rent")), String.format("%s - %s", obj.getString("name"), obj.getString("contact"))));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         }
     }
 

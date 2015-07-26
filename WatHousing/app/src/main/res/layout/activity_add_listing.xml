@@ -33,7 +33,7 @@
             android:layout_width="1dp"
             android:layout_height="20dp"/>
 
-        <AutoCompleteTextView android:id="@+id/address"
+        <EditText android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:hint="Address" android:maxLines="1"
             android:singleLine="true"
@@ -93,7 +93,7 @@
             android:layout_height="20dp"/>
 
         <Button
-            android:id="@+id/email_sign_in_button"
+            android:id="@+id/add_listing_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -102,7 +102,7 @@
             android:textColor="#0D47A1"
             style="@style/DefaultButtonText"
             android:background="@drawable/button_default_bg"
-            android:onClick="signUp"/>
+            android:onClick="addListing"/>
 
     </LinearLayout>
 

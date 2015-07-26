@@ -224,8 +224,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             else if(result == "0") {
                 Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
             }
-
-            myHandler.sendEmptyMessage(Integer.parseInt(result));
+            Message msg = Message.obtain();
+            msg.obj = result;
+            msg.setTarget(myHandler);
+            msg.sendToTarget();
         }
     }
 
@@ -233,16 +235,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                    startActivity(intent);
-                    break;
-                case 1:
-                    Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
-                    startActivity(intent1);
-                default:
-                    break;
+            int success = Integer.parseInt(msg.obj.toString().split(" ")[0]);
+            int role = Integer.parseInt(msg.obj.toString().split(" ")[1]);
+            if(success == 0) {
+                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+            else if(success == 1){
+                Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                getIntent().removeExtra("role");
+                intent1.putExtra("role", role);
+                startActivity(intent1);
             }
         }
     };

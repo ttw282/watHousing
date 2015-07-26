@@ -27,6 +27,7 @@
 
     <Button
         android:layout_width="match_parent"
+        android:id="@+id/viewalllistings"
         android:layout_height="wrap_content"
         android:onClick="viewListing"
         android:gravity="center"
@@ -43,6 +44,7 @@
 
     <Button
         android:layout_width="match_parent"
+        android:id="@+id/searchlistings"
         android:layout_height="wrap_content"
         android:text="Search Listings"
         android:onClick="searchListing"
@@ -60,6 +62,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/addlisting"
         android:text="Add Listing"
         android:onClick="addListing"
         android:gravity="center"

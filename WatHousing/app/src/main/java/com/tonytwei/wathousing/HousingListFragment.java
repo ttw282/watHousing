@@ -71,6 +71,84 @@ public class HousingListFragment extends ListFragment {
     public HousingListFragment() {
     }
 
+    public static String GET(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            // create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+
+            // receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+
+            // convert inputstream to string
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+
+        return result;
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
+    }
+
+    private static class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            return GET(urls[0]);
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                returnObj(result);
+                // JSONArray mJsonArray = new JSONArray(result);
+                // for(int i = 0; i < mJsonArray.length(); i++){
+                //     JSONObject obj = mJsonArray.getJSONObject(i);
+                //     String res = Integer.toString(i + 1) + 
+                //         String.format("%s: %s, %s - $%s", 
+                //                 obj.getString("listingId"), 
+                //                 obj.getString("address"), 
+                //                 obj.getString("postalCode"), 
+                //                 obj.getString("rent")
+                //         ) +
+                //         String.format("%s - %s", 
+                //             obj.getString("name"), 
+                //             obj.getString("contact")
+                //         );
+                // }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void returnObj(String res) {
+        Message msg = Message.obtain();
+        msg.obj = res;
+        msg.setTarget(myHandler);
+        msg.sendToTarget();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,23 +162,40 @@ public class HousingListFragment extends ListFragment {
             searchkey = extras.getString("searchkey");
         }
 
-        DummyContent.updateContent(search, searchkey);
-
-
-        Message msg = Message.obtain();
-        msg.obj = "";
-        msg.setTarget(myHandler);
-        msg.sendToTarget();
-
+        DummyContent.ITEMS.clear();
+        DummyContent.ITEM_MAP.clear();
+        if(search == 0) {
+            new HttpAsyncTask().execute("http://mdguo.com/api/getListing.php");
+        }
+        else if(search == 1){
+            new HttpAsyncTask().execute("http://mdguo.com/api/searchListing.php?pcode=" + searchkey);
+        }
     }
 
     Handler myHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
-            if(DummyContent.ITEMS != null) {
-                setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
+            JSONArray mJsonArray = new JSONArray(msg.obj);
+            for(int i = 0; i < mJsonArray.length(); i++){
+                JSONObject obj = mJsonArray.getJSONObject(i);
+                DummyContent.addItem(
+                    new DummyItem(
+                        Integer.toString(i + 1), 
+                        String.format("%s: %s, %s - $%s", 
+                            obj.getString("listingId"), 
+                            obj.getString("address"), 
+                            obj.getString("postalCode"), 
+                            obj.getString("rent")
+                        ), 
+                        String.format("%s - %s", 
+                            obj.getString("name"), 
+                            obj.getString("contact")
+                        )
+                    )
+                );
             }
+            setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyItem.getItems()));
         }
     };
 

@@ -48,83 +48,14 @@ public class DummyContent {
      */
     public static Map<String, DummyItem> ITEM_MAP = new HashMap<>();
 
+    public List<DummyItem> getItems() {
+        return ITEMS;
+    }
+
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
-    }
-
-    public static void updateContent(int search, String searchkey){
-        ITEMS.clear();
-        ITEM_MAP.clear();
-
-        if(search == 0) {
-            new HttpAsyncTask().execute("http://mdguo.com/api/getListing.php");
-        }
-        else if(search == 1){
-            new HttpAsyncTask().execute("http://mdguo.com/api/searchListing.php?pcode=" + searchkey);
-
-        }
-    }
-
-    public static String GET(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            // create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
-
-            // make GET request to the given URL
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-            // receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
-
-            // convert inputstream to string
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
-
-        } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
-        }
-
-        return result;
-    }
-
-    private static class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            return GET(urls[0]);
-        }
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONArray mJsonArray = new JSONArray(result);
-                for(int i = 0; i < mJsonArray.length(); i++){
-                    JSONObject obj = mJsonArray.getJSONObject(i);
-                    addItem(new DummyItem(Integer.toString(i + 1), String.format("%s: %s, %s - $%s", obj.getString("listingId"), obj.getString("address"), obj.getString("postalCode"), obj.getString("rent")), String.format("%s - %s", obj.getString("name"), obj.getString("contact"))));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-    }
+    }    
 
     /**
      * A dummy item representing a piece of content.

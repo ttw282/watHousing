@@ -10,8 +10,6 @@ if($db->connect_errno > 0){
 $_addr = $_GET["addr"];
 // postalCode
 $_pcode = $_GET["pcode"];
-// rent
-$_rent = $_GET["rent"];
 
 $stmt = $db->prepare("SELECT * FROM Listing");
 //AND address LIKE ? AND rent <= ?

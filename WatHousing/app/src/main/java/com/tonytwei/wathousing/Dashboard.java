@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 
 public class Dashboard extends ActionBarActivity {
@@ -14,6 +15,28 @@ public class Dashboard extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        int value = 0;
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            value = extras.getInt("role");
+        }
+        if(value == 0){
+            Button but = (Button)findViewById(R.id.addlisting);
+            Button but1 = (Button)findViewById(R.id.viewalllistings);
+            Button but2 = (Button)findViewById(R.id.searchlistings);
+            but.setVisibility(View.INVISIBLE);
+            but1.setVisibility(View.VISIBLE);
+            but2.setVisibility(View.VISIBLE);
+        }
+        else if(value == 1){
+            Button but = (Button)findViewById(R.id.viewalllistings);
+            Button but1 = (Button)findViewById(R.id.searchlistings);
+            Button but2 = (Button)findViewById(R.id.addlisting);
+            but.setVisibility(View.INVISIBLE);
+            but1.setVisibility(View.INVISIBLE);
+            but2.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -41,6 +64,12 @@ public class Dashboard extends ActionBarActivity {
     public void viewListing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, HousingListActivity.class);
+        startActivity(intent);
+    }
+
+    public void addListing(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, AddListingActivity.class);
         startActivity(intent);
     }
 

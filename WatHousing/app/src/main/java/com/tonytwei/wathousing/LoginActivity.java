@@ -15,8 +15,11 @@ import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +29,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +127,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password) || TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -141,9 +154,107 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            Intent i = new Intent(this, Dashboard.class);
-            startActivity(i);
+
+
+           new HttpAsyncTask().execute("http://mdguo.com/api/authenticate.php?username=" + email + "&password=" + password);
+
+
+            /*TextView txt = ((TextView)findViewById(R.id.hidden));
+            String result = txt.getText().toString();
+            if(result == "1") {
+                Intent intent = new Intent(this, Dashboard.class);
+                startActivity(intent);
+            }
+            else{
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }*/
         }
+    }
+
+    public static String GET(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            // create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+
+            // receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+
+            // convert inputstream to string
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+
+        return result;
+    }
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
+    }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            return GET(urls[0]);
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            if(result == "1") {
+                Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_LONG).show();
+            }
+            else if(result == "0") {
+                Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
+            }
+            Message msg = Message.obtain();
+            msg.obj = result;
+            msg.setTarget(myHandler);
+            msg.sendToTarget();
+        }
+    }
+
+    Handler myHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int success = Integer.parseInt(msg.obj.toString().split(" ")[0]);
+            int role = Integer.parseInt(msg.obj.toString().split(" ")[1]);
+            if(success == 0) {
+                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+            else if(success == 1){
+                Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                getIntent().removeExtra("role");
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+            }
+        }
+    };
+
+
+    public void signUp(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
 
     private boolean isEmailValid(String email) {

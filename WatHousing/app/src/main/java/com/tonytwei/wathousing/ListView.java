@@ -10,6 +10,7 @@ public class ListView extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: dashboard for landlords (check role)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
     }

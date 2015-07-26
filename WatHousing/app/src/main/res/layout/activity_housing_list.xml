@@ -1,30 +1,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/text1"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Housing List"
-        android:textStyle="bold"
-        android:textIsSelectable="true"
-        android:textSize="32dp" />
+        android:textColor="#0D47A1"
+        android:textSize="50sp"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"/>
 
-    <Button android:id="@+id/dashboard_button" style="?android:textAppearanceSmall"
-        android:layout_width="280dp" android:layout_height="wrap_content"
-        android:text="Dashboard"
+    <Button android:id="@+id/dashboard_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Return to Dashboard"
         android:textStyle="bold"
         android:onClick="Dashboard"
-        android:clickable="true" />
+        android:clickable="true"
+        android:textColor="#0D47A1" />
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_list"
-    android:name="com.tonytwei.wathousing.HousingListFragment" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp" tools:context="com.tonytwei.wathousing.HousingListActivity"
-    tools:layout="@android:layout/list_content" />
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
 
-
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_list"
+        android:name="com.tonytwei.wathousing.HousingListFragment" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        tools:context="com.tonytwei.wathousing.HousingListActivity"
+        tools:layout="@android:layout/list_content"
+        android:layout_weight="1"
+        />
 
     </LinearLayout>

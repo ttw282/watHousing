@@ -3,27 +3,32 @@
     android:layout_height="match_parent" android:gravity="center_horizontal"
     android:orientation="vertical">
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_detail_container"
-    android:layout_width="match_parent" android:layout_height="400dp"
-    tools:context="com.tonytwei.wathousing.HousingDetailActivity" tools:ignore="MergeRootFrame" >
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_detail_container"
+        android:layout_width="match_parent" android:layout_height="300dp"
+        tools:context="com.tonytwei.wathousing.HousingDetailActivity" tools:ignore="MergeRootFrame" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_gravity="center" />
-</FrameLayout>
-
-
+    </FrameLayout>
 
     <Button android:id="@+id/write_review_button" style="?android:textAppearanceSmall"
-        android:layout_width="280dp" android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" android:text="Write Review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Write Review"
         android:textStyle="bold"
         android:onClick="WriteReview"
-        android:clickable="true" />
+        android:clickable="true"
+        android:textColor="#0D47A1"/>
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:id="@+id/reviews"
+        android:layout_gravity="bottom"
+        android:text=""
+        android:textStyle="bold"
+        android:textIsSelectable="true"
+        android:textSize="12dp" />
 
 </LinearLayout>

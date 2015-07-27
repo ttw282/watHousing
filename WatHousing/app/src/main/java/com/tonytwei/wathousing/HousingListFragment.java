@@ -1,18 +1,24 @@
 package com.tonytwei.wathousing;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
 import com.tonytwei.wathousing.dummy.DummyContent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A list fragment representing a list of Housings. This fragment
@@ -94,6 +100,7 @@ public class HousingListFragment extends ListFragment {
 
     }
 
+
     Handler myHandler = new Handler() {
 
         @Override
@@ -104,7 +111,10 @@ public class HousingListFragment extends ListFragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
+
+                List<DummyContent.DummyItem> arr = DummyContent.ITEMS;
+                setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, new ArrayList()));
+                setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, arr));
             }
         }
     };

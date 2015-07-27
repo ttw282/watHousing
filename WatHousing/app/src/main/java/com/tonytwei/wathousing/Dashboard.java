@@ -24,18 +24,14 @@ public class Dashboard extends ActionBarActivity {
         if(value == 0){
             Button but = (Button)findViewById(R.id.addlisting);
             Button but1 = (Button)findViewById(R.id.viewalllistings);
-            Button but2 = (Button)findViewById(R.id.searchlistings);
             but.setVisibility(View.INVISIBLE);
             but1.setVisibility(View.VISIBLE);
-            but2.setVisibility(View.VISIBLE);
         }
         else if(value == 1){
             Button but = (Button)findViewById(R.id.viewalllistings);
-            Button but1 = (Button)findViewById(R.id.searchlistings);
-            Button but2 = (Button)findViewById(R.id.addlisting);
-            but.setVisibility(View.INVISIBLE);
-            but1.setVisibility(View.INVISIBLE);
-            but2.setVisibility(View.VISIBLE);
+            Button but1 = (Button)findViewById(R.id.addlisting);
+            but.setVisibility(View.VISIBLE);
+            but1.setVisibility(View.VISIBLE);
         }
     }
 
@@ -76,11 +72,6 @@ public class Dashboard extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void searchListing(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, SearchListing.class);
-        startActivity(intent);
-    }
     public void logout(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, LoginActivity.class);

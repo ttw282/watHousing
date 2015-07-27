@@ -8,7 +8,11 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.database.Cursor;
+import android.media.tv.TvInputService;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -17,7 +21,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
+import android.provider.SyncStateContract;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -45,6 +51,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -432,9 +440,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     //----------------------------------------------
     private OnClickListener loginButtonListener = new OnClickListener() {
         public void onClick( View v ) {
+
+
             if( !mFacebook.isSessionValid() ) {
                 Toast.makeText(LoginActivity.this, "Authorizing", Toast.LENGTH_SHORT).show();
-                mFacebook.authorize(LoginActivity.this, new String[] { "" }, new LoginDialogListener());
+                mFacebook.authorize(LoginActivity.this, new String[]{""}, new LoginDialogListener());
+
+                Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                startActivity(intent1);
+
+                finish();
             }
             else {
                 Toast.makeText( LoginActivity.this, "Has valid session", Toast.LENGTH_SHORT).show();

@@ -241,12 +241,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 Intent intent = new Intent(getBaseContext(), LoginActivity.class);
                 getIntent().removeExtra("role");
                 startActivity(intent);
+                finish();
             }
             else if(success == 1){
                 Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
                 getIntent().removeExtra("role");
                 intent1.putExtra("role", role);
                 startActivity(intent1);
+                finish();
             }
         }
     };

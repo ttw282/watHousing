@@ -64,18 +64,21 @@ public class Dashboard extends ActionBarActivity {
         getIntent().removeExtra("searchkey");
         intent.putExtra("search", 0);
         startActivity(intent);
+        finish();
     }
 
     public void addListing(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, AddListingActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void logout(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

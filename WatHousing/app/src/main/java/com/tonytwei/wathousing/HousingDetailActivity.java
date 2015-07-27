@@ -98,7 +98,7 @@ public class HousingDetailActivity extends ActionBarActivity {
     public void WriteReview(View view) {
         Intent i = new Intent(this, WriteReview.class);
         TextView txt = (TextView)findViewById(R.id.housing_detail);
-        String listingid = txt.getText().toString().substring(0, 1);
+        String listingid = txt.getText().toString().split(":")[0];
         getIntent().removeExtra("listingid");
         i.putExtra("listingid", listingid);
         startActivity(i);
@@ -150,7 +150,7 @@ public class HousingDetailActivity extends ActionBarActivity {
                 JSONArray mJsonArray = new JSONArray(result);
 
                 TextView frag = (TextView)findViewById(R.id.housing_detail);
-                String id = frag.getText().toString().substring(0,1);
+                String id = frag.getText().toString().split(":")[0];
                 float total = 0;
                 float count = 0;
                 float avg = 0;

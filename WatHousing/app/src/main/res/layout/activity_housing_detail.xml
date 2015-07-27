@@ -4,31 +4,62 @@
     android:orientation="vertical">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/housing_detail_container"
-        android:layout_width="match_parent" android:layout_height="300dp"
-        tools:context="com.tonytwei.wathousing.HousingDetailActivity" tools:ignore="MergeRootFrame" >
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/housing_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:context="com.tonytwei.wathousing.HousingDetailActivity"
+        tools:ignore="MergeRootFrame" >
 
     </FrameLayout>
 
-    <Button android:id="@+id/write_review_button" style="?android:textAppearanceSmall"
+    <Button android:id="@+id/write_review_button"
+        style="?android:textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:padding="16dp"
         android:text="Write Review"
         android:textStyle="bold"
         android:onClick="WriteReview"
         android:clickable="true"
-        android:textColor="#0D47A1"/>
+        android:textColor="#0D47A1" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:padding="16dp"
+        android:text="Reviews"
+        android:textStyle="bold"
+        android:textIsSelectable="true"
+        android:textColor="#0D47A1"
+        android:textSize="26dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="5"
+        android:id="@+id/avg_rating"
+        style="?android:attr/ratingBarStyle"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         android:id="@+id/reviews"
         android:layout_gravity="bottom"
         android:text=""
         android:textStyle="bold"
         android:textIsSelectable="true"
-        android:textSize="12dp" />
+        android:textColor="#0D47A1"
+        android:textSize="16dp" />
 
 </LinearLayout>

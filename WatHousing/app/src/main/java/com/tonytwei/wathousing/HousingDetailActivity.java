@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,8 +47,10 @@ public class HousingDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_housing_detail);
 
         // Show the Up button in the action bar.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        getSupportActionBar().hide();
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -142,6 +145,8 @@ public class HousingDetailActivity extends ActionBarActivity {
 
             try {
                 String reviews = "";
+                String avg_rating = "";
+                String rating = "";
                 JSONArray mJsonArray = new JSONArray(result);
 
                 TextView frag = (TextView)findViewById(R.id.housing_detail);
@@ -153,17 +158,31 @@ public class HousingDetailActivity extends ActionBarActivity {
                 for(int i = 0; i < mJsonArray.length(); i++) {
                     JSONObject obj = mJsonArray.getJSONObject(i);
                     if(obj.getInt("listingId") == Integer.parseInt(id)) {
-                        reviews += "Rating: " + obj.getInt("rating") + ", " + "Comments: " + obj.getString("comments") + "\n";
+                        for(int j = 0;  j <5; j++)
+                        {
+                            if (j >= (5 - obj.getInt("rating"))){
+                                rating += "*";
+                            }
+                            else {
+                                //rating += "_";
+                                rating += "  ";
+                            }
+                        }
+                        reviews += rating + " :    " + obj.getString("comments") + "\n";
                         count++;
                         total += obj.getInt("rating");
                     }
+                    rating = "";
                 }
                 reviews += "\n";
                 avg = total/count;
-                reviews += "Average rating: " + avg;
+
+                RatingBar ratingBar = (RatingBar) findViewById(R.id.avg_rating);
+                ratingBar.setRating(avg);
 
                 TextView txt = (TextView)findViewById(R.id.reviews);
                 txt.setText(reviews);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

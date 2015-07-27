@@ -444,12 +444,49 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
             if( !mFacebook.isSessionValid() ) {
                 Toast.makeText(LoginActivity.this, "Authorizing", Toast.LENGTH_SHORT).show();
-                mFacebook.authorize(LoginActivity.this, new String[]{""}, new LoginDialogListener());
+                //mFacebook.authorize(LoginActivity.this, new String[]{""}, new LoginDialogListener());
 
-                Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
-                startActivity(intent1);
+                mFacebook.authorize(LoginActivity.this, new String[]{""}, new Facebook.DialogListener() {
+                    @Override
+                    public void onComplete(Bundle values) {
+                        try {
+                            //The user has logged in, so now you can query and use their Facebook info
+                            JSONObject json = Util.parseJson(mFacebook.request("me"));
+                            String facebookID = json.getString("id");
+                            String firstName = json.getString("first_name");
+                            String lastName = json.getString("last_name");
+                            Toast.makeText( LoginActivity.this, "Thank you for Logging In, " + firstName + " " + lastName + "!", Toast.LENGTH_SHORT).show();
+                            Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                            startActivity(intent1);
+                            finish();
+                            //SessionStore.save(mFacebook, LoginActivity.this);
+                        }
+                        catch( Exception error ) {
+                            Toast.makeText( LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        catch( FacebookError error ) {
+                            Toast.makeText( LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                finish();
+                    @Override
+                    public void onFacebookError(FacebookError e) {
+                        Toast.makeText( LoginActivity.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onError(DialogError e) {
+                        Toast.makeText( LoginActivity.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+
             }
             else {
                 Toast.makeText( LoginActivity.this, "Has valid session", Toast.LENGTH_SHORT).show();
@@ -459,6 +496,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     String firstName = json.getString("first_name");
                     String lastName = json.getString("last_name");
                     Toast.makeText(LoginActivity.this, "You already have a valid session, " + firstName + " " + lastName + ". No need to re-authorize.", Toast.LENGTH_SHORT).show();
+
                 }
                 catch( Exception error ) {
                     Toast.makeText( LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
@@ -484,7 +522,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 String firstName = json.getString("first_name");
                 String lastName = json.getString("last_name");
                 Toast.makeText( LoginActivity.this, "Thank you for Logging In, " + firstName + " " + lastName + "!", Toast.LENGTH_SHORT).show();
-                SessionStore.save(mFacebook, LoginActivity.this);
+                Intent intent1 = new Intent(getBaseContext(), Dashboard.class);
+                startActivity(intent1);
+                finish();
+                //SessionStore.save(mFacebook, LoginActivity.this);
             }
             catch( Exception error ) {
                 Toast.makeText( LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();

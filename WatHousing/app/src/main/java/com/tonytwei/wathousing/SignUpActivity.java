@@ -105,6 +105,7 @@ public class SignUpActivity extends ActionBarActivity {
 
         protected void onPostExecute(Double result) {
             Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 }

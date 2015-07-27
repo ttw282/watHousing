@@ -99,6 +99,11 @@ public class HousingListFragment extends ListFragment {
         @Override
         public void handleMessage(Message msg) {
             if(DummyContent.ITEMS != null) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
             }
         }

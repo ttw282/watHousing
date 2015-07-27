@@ -239,6 +239,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             int role = Integer.parseInt(msg.obj.toString().split(" ")[1]);
             if(success == 0) {
                 Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                getIntent().removeExtra("role");
                 startActivity(intent);
             }
             else if(success == 1){

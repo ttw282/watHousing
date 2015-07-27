@@ -85,6 +85,13 @@
                 android:onClick="signUp"
                 android:textColor="#ffffff"
                 android:background="@null" />
+    
+	<Button android:id="@+id/LoginButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Login to Facebook"
+        android:onClick="FBLogin" >
+	</Button>
 
         </LinearLayout>
     </ScrollView>

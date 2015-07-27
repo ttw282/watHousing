@@ -7,6 +7,7 @@ import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Facebook.DialogListener;
 import com.tonytwei.wathousing.R;
+import com.tonytwei.wathousing.Util;
 
 import android.app.Activity;
 import android.content.Intent;

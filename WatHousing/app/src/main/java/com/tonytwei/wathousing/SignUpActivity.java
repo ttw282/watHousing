@@ -93,6 +93,7 @@ public class SignUpActivity extends ActionBarActivity {
         new MyAsyncTask().execute("http://mdguo.com/api/test.php?username=" + email + "&password=" + password + "&role="+roleint );
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private class MyAsyncTask extends AsyncTask<String, Integer, Double> {
